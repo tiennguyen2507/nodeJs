@@ -1,0 +1,27 @@
+.imageLogin {
+    width: 100%;
+    padding: 10px;
+    padding-right: 0px;
+    border-radius: 10px;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.formLogin{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.itemlogin{
+    width: 100%;
+}
+.logo {
+    height: 100px;
+}
+
+.cssRegist{
+    text-decoration: none;
+    padding-top: 10px;
+}

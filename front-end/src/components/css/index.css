@@ -1,0 +1,13 @@
+.row{
+    margin:0px
+}
+.spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}
+p{
+    margin: 0px;
+}
