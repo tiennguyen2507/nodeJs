@@ -17,7 +17,6 @@ export const Login = () => {
 
     const login = async event => {
         try {
-            console.log(formLogin)
             const loginData = await loginUser(formLogin)
             if(loginData.success) {
                 history.push('/dashboard')

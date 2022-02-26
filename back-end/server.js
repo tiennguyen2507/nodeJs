@@ -29,7 +29,7 @@ connectDB()
 
 indexRouter(app)
 
-const port = 5000
+const port = process.env.PORT ||5000
 app.listen(port, () => {
     console.log(`server đang chạy trên cổng ${port}`)
 })

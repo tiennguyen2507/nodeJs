@@ -8,13 +8,18 @@ import { AuthContext } from "../../contexts/AuthContext"
 
 
 const NavbarMenu = () => {
-    const {authState: {user:{userName}}} = useContext(AuthContext) 
+    const {authState: {user:{userName}},logOut} = useContext(AuthContext) 
     // const history = useHistory()
     // const logOut = () => {
     //     // localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME)
     //     history.push('/login')
 
     // }
+
+    const handeLogOut = () => {
+        console.log('logOut');
+        logOut()
+    }
     return (
         <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
             <Container>
@@ -29,7 +34,7 @@ const NavbarMenu = () => {
                         <Nav.Link eventKey={2} >
                             welcome {userName}
                         </Nav.Link>
-                        <Button>
+                        <Button onClick={handeLogOut}>
                             Log Out
                         </Button>
                     </Nav>

@@ -16,6 +16,7 @@ const AuthContextProvider = ({ children }) => {
 
     //autithencate user
     const loadUser = async () => {
+        console.log('loadUser')
         if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
             setAuthToken(localStorage[LOCAL_STORAGE_TOKEN_NAME])
             try {
@@ -30,9 +31,20 @@ const AuthContextProvider = ({ children }) => {
                         }
                     })
                 }
-                // console.log(authState)
+                // else{
+                //     localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME)
+                //     dispatch({
+                //         type: 'SET_AUTH',
+                //         payload: {
+                //             authLoading: false,
+                //             isAutithenticated: false
+                //         }
+                //     })
+                // }
+
+                console.log(authState)
             } catch (error) {
-                // localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME)
+                localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME)
                 setAuthToken(null)
                 dispatch({
                     type: 'SET_AUTH',
@@ -55,7 +67,9 @@ const AuthContextProvider = ({ children }) => {
             })
         }
     }
-    useEffect(() => loadUser(), [])
+    useEffect(() => loadUser()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    , [])
 
     
 
@@ -78,7 +92,7 @@ const AuthContextProvider = ({ children }) => {
         }
     }
 
-     //login
+     //register
      const registerUser = async userForm => {
         try {
             const response = await axios.post(`${apiUrl}/auth/register`, userForm)
@@ -97,9 +111,22 @@ const AuthContextProvider = ({ children }) => {
         }
     }
 
+    //log out
+    const logOut = () =>{
+        localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME)
+        dispatch({
+            type: 'SET_AUTH',
+            payload: {
+                authLoading: false,
+                isAutithenticated: false,
+                user: null
+            }
+        })
+    }
+
 
     //Context data
-    const authContextData = { loginUser, authState, registerUser }
+    const authContextData = { loginUser, authState, registerUser,logOut }
     return (
         <AuthContext.Provider value={authContextData}>
             {children}

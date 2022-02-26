@@ -10,10 +10,10 @@ const verify = require('../middleware/auth')
 //@access private
 Router.get('/',verify,async (req, res) => {
    try {
-    const Post =await portModule.find({user:req.userID}).populate('user',['userName'])
+    const Posts =await portModule.find({user:req.userID}).populate('user',['userName'])
     return res.json({
         success :true,
-        Post
+        Posts
     })
    } catch (error) {
     return res.json({
@@ -41,7 +41,7 @@ Router.post('/', verify, async (req, res) => {
             title,
             decription,
             url: url.startsWith('http://') ? url : `http://${url}`,
-            status : status || '0',
+            status : status || 'TO LEARNED',
             user: req.userID
         })
         await newPost.save()
@@ -77,7 +77,7 @@ Router.put('/:id', verify, async (req, res) => {
         title,
         decription,
         url: url.startsWith('http://') ? url : `http://${url}`,
-        status : status || '0'
+        status : status || 'TO LEARNED'
     }
     const postUpateCondition = {
         _id:req.params.id,
