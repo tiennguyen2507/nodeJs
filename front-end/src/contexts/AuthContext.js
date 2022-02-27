@@ -31,16 +31,16 @@ const AuthContextProvider = ({ children }) => {
                         }
                     })
                 }
-                // else{
-                //     localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME)
-                //     dispatch({
-                //         type: 'SET_AUTH',
-                //         payload: {
-                //             authLoading: false,
-                //             isAutithenticated: false
-                //         }
-                //     })
-                // }
+                else{
+                    localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME)
+                    dispatch({
+                        type: 'SET_AUTH',
+                        payload: {
+                            authLoading: false,
+                            isAutithenticated: false
+                        }
+                    })
+                }
 
                 console.log(authState)
             } catch (error) {
