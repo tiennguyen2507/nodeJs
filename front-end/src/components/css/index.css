@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
 .row{
     margin:0px
 }
@@ -10,4 +11,16 @@
 }
 p{
     margin: 0px;
+}
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cardItem {
+    padding: 0px 5px;
+}
+.cardItem:hover {
+    color: red;
+    cursor: pointer;
 }

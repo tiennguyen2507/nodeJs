@@ -33,8 +33,23 @@ const PostContextProvider = ({ children }) => {
                 }
             }
         } 
+    //addPost
+    const addPost = async(data) => {
+        try {
+            const addPost = await axios.post(`${apiUrl}/posts`,data)
+            return addPost.dataa
+        } catch (error) {
+            dispatch({
+                type:'POST_LOADED_FAIL'
+            })
 
-    const postProviderData = {postState,getPost}
+            return error.response.data ? error.response.data : {
+                success:false,
+                message:'error'
+            }
+        }
+    }
+    const postProviderData = {postState,getPost,addPost}
     return (
         <PostContext.Provider value={postProviderData}>
             {children}

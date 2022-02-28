@@ -12,9 +12,8 @@ const postSchima = new Schema({
         type: String
     },
     status:{
-        type: String,
-        enum: ['LEANED','LEARNING', 'TO LEARNED']
-    },
+        type: String
+    },  
     user: {
         type: String,
         ref: 'users'

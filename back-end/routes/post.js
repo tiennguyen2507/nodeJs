@@ -28,6 +28,7 @@ Router.get('/',verify,async (req, res) => {
 //@access private
 Router.post('/', verify, async (req, res) => {
     const {title, decription, url, status} = req.body
+    console.log(req.body)
     try {
         //validation
         if(!title) {
@@ -38,12 +39,13 @@ Router.post('/', verify, async (req, res) => {
         }
 
         const newPost = new portModule({
+            user: req.userID,
             title,
             decription,
             url: url.startsWith('http://') ? url : `http://${url}`,
-            status : status || 'TO LEARNED',
-            user: req.userID
+            status : status || 'LEANED'
         })
+        console.log(portModule)
         await newPost.save()
 
         return res.send({
@@ -52,7 +54,7 @@ Router.post('/', verify, async (req, res) => {
             port: newPost
         })
     } catch (error) {
-        return res.json({
+        return res.status(500).json({
             success: false,
             message: "Tạo post không thành công"
         })
